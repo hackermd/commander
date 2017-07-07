@@ -4,13 +4,6 @@ Clone the repository:
 
     $ git clone https://github.com/hackermd/commander ~/commander
 
-#### Z shell
-
-Clone the `oh-my-zsh` repository:
-
-    $ git clone https://github.com/hackermd/oh-my-zsh ~/.oh-my-zsh
-    $ chsh -s /bin/zsh
-
 
 ## Requirements
 
@@ -52,9 +45,17 @@ Create a softlink for the `tmux` configuration file:
 
 #### Zsh
 
+Clone the `oh-my-zsh` repository:
+
+    $ git clone https://github.com/hackermd/oh-my-zsh ~/.oh-my-zsh
+
 Create a softlink for the `zsh` configuration file to set up your environment:
 
     $ ln -s ~/.zshrc ~/commander/zshrc
+    
+Change default shell:
+
+    $ chsh -s $(grep /zsh$ /etc/shells | tail -1)
 
 #### Dir colors
 
