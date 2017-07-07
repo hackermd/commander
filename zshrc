@@ -53,7 +53,8 @@ export LANG=en_US.UTF-8
 source $ZSH/oh-my-zsh.sh
 
 # Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
+if [[ -n $SSH_CONNECTION ]]
+then
   export EDITOR='vim'
 else
   export EDITOR='vim'
@@ -62,23 +63,26 @@ fi
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# ZMV
-autoload -U zmv
+if [[ "$OSTYPE" == "darwin"* ]]
+then
+    # Enable GNU command line tools and corresponding man pages
+    export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+    export MANPATH="$(brew --prefix coreutils)/libexec/gnuman:$MANPATH"
+    # export MANPATH="/usr/local/man:$MANPATH"
 
-# Enable GNU command line tools and corresponding man pages
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# Prefer GNU command line tools over MacOS
-export PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:$PATH"
+    # Prefer GNU command line tools over MacOS
+    export PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:$PATH"
+fi
 
 # Color listing (GNU coreutils)
 test -r ~/.dir_colors && eval $(gdircolors -b ~/.dir_colors) #dircolors
 
 # Virtualenvwrapper
-export WORKON_HOME=~/.envs
-source /usr/local/bin/virtualenvwrapper.sh
+if [[ -f /usr/local/bin/virtualenvwrapper.sh ]]
+then
+    export WORKON_HOME=~/.envs
+    source /usr/local/bin/virtualenvwrapper.sh
+fi
 
 # Java
 export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
