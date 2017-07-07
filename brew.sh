@@ -20,6 +20,7 @@ brew install binutils \
              gawk \
              gcc \
              gdb \
+             git \
              gnu-indent --with-default-names \
              gnu-sed --with-default-names \
              gnu-tar --with-default-names \
@@ -29,16 +30,23 @@ brew install binutils \
              gpatch \
              grep --with-default-names \
              gzip \
+             htop \
+             less \
              m4 \
              make \
              mutt \
              openblas \
+             openssh \
              parallel \
+             perl \
+             python \
              rename \
              rsync \
              the_silver_searcher \
              tmux \
-             vim \
+             unzip \
+             vim --override-system-vi \
              watch \
              wdiff --with-gettext \
-             wget
+             wget \
+             zsh
