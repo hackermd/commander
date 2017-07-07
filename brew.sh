@@ -4,8 +4,6 @@ then
 fi
 
 brew cask install xquartz
-
-brew install python
 brew cask install java
 
 brew tab homebrew/science
