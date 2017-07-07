@@ -48,10 +48,18 @@ Remap option key to behave as in Linux terminal:
 
 Create a softlink for the `tmux` configuration file:
 
-    ln -s ~/.tmux.conf ~/commander/tmux.conf
+    $ ln -s ~/.tmux.conf ~/commander/tmux.conf
 
 #### Zsh
 
 Create a softlink for the `zsh` configuration file to set up your environment:
 
-    ln -s ~/.zshrc ~/commander/zshrc
+    $ ln -s ~/.zshrc ~/commander/zshrc
+
+#### Dir colors
+
+Create a softlink for custom color configuration file:
+
+    $ ln -s ~/.dir_colors ~/commander/dir_colors
+
+
