@@ -27,7 +27,7 @@ Install Homebrew and a couple of useful programs:
 
 #### iTerm2 Settings
 
-Use a different background color to match the background of Vim windows:
+Use a different background color to match the background of Vim windows configured via [hackermd/vimanizer](https://github.com/hackermd/vimanizer):
 
     Preferences > Profiles > Colors > Background
     `242424` RGB Hex
