@@ -43,6 +43,14 @@ Create a softlink for the `tmux` configuration file:
 
     $ ln -s ~/.tmux.conf ~/commander/tmux.conf
 
+Add the [Tmux plugin manager](https://github.com/tmux-plugins/tpm):
+
+    $ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+Source the tmux configuration:
+
+    $ tmux source ~/.tmux.conf
+
 #### Zsh
 
 Clone the `oh-my-zsh` repository:
@@ -52,10 +60,12 @@ Clone the `oh-my-zsh` repository:
 Create a softlink for the `zsh` configuration file to set up your environment:
 
     $ ln -s ~/.zshrc ~/commander/zshrc
-    
-Change default shell:
+
+Change the default shell:
 
     $ chsh -s $(grep /zsh$ /etc/shells | tail -1)
+
+Note that changing the default shell may lead to problems. You may want to set the ZSH shell only as a login shell for your terminal application instead.
 
 #### Dir colors
 
