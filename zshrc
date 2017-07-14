@@ -60,8 +60,8 @@ else
   export EDITOR='vim'
 fi
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+# Use vim editing mode instead of emacs
+set -o vi
 
 if [[ "$OSTYPE" == "darwin"* ]]
 then
@@ -70,12 +70,12 @@ then
     export MANPATH="$(brew --prefix coreutils)/libexec/gnuman:$MANPATH"
     # export MANPATH="/usr/local/man:$MANPATH"
 
-    # Prefer GNU command line tools over MacOS
+    # Prefer GNU command line tools over defaults
     export PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:$PATH"
 fi
 
 # Color listing (GNU coreutils)
-test -r ~/.dir_colors && eval $(gdircolors -b ~/.dir_colors) #dircolors
+test -r ~/.dir_colors && eval $(gdircolors -b ~/.dir_colors)
 
 # Virtualenvwrapper
 if [[ -f /usr/local/bin/virtualenvwrapper.sh ]]
