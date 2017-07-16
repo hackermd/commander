@@ -42,6 +42,7 @@ Remap option key to behave as in Linux terminal:
 Create a softlink for the `tmux` configuration file:
 
     $ ln -s ~/.tmux.conf ~/commander/tmux.conf
+    $ ln -s ~/.tmux-darwin.conf ~/commander/tmux-darwin.conf
 
 Add the [Tmux plugin manager](https://github.com/tmux-plugins/tpm):
 
