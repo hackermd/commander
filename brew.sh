@@ -46,5 +46,4 @@ brew install binutils \
              vim --override-system-vi \
              watch \
              wdiff --with-gettext \
-             wget \
-             zsh
+             wget
