@@ -8,6 +8,14 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 
+# Use vim as editor
+export EDITOR='vim'
+export VISUAL='vim'
+
+# Use vi mode instead of emacs
+set -o vi
+set show-mode-in-prompt on
+
 ###########
 # Mac OSX #
 ###########
@@ -68,6 +76,10 @@ alias ,,,='cd ../../..'
 alias ,,,,='cd ../../../..'
 
 # List direcory contents
+if [ $(which dircolors) ]; then
+    test -r $HOME/.dircolors && eval "$(dircolors -b $HOME/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+fi
 alias lsa='ls -lah'
 alias lla='ls -la'
 alias ll='ls -l'
