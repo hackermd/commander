@@ -75,10 +75,10 @@ alias ,,='cd ../..'
 alias ,,,='cd ../../..'
 alias ,,,,='cd ../../../..'
 
-# List direcory contents
+# Listing directory contents
 if [ $(which dircolors) ]; then
-    test -r $HOME/.dircolors && eval "$(dircolors -b $HOME/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
+    test -r $HOME/.dir_colors && eval "$(dircolors -b $HOME/.dir_colors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=tty'
 fi
 alias lsa='ls -lah'
 alias lla='ls -la'
