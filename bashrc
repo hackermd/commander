@@ -68,7 +68,6 @@ alias ,,,='cd ../../..'
 alias ,,,,='cd ../../../..'
 
 # List direcory contents
-alias ls='gls --color=tty'
 alias lsa='ls -lah'
 alias lla='ls -la'
 alias ll='ls -l'
