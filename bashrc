@@ -20,7 +20,7 @@ set show-mode-in-prompt on
 # Mac OSX #
 ###########
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
+if [ "$OSTYPE" == "darwin"* ]; then
 
     # Stuff installed via homebrew
     if [ $(which brew) ]; then
@@ -43,9 +43,21 @@ fi
 ##########
 
 # Virtualenvwrapper
-if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
-    export WORKON_HOME=~/.envs
-    source /usr/local/bin/virtualenvwrapper.sh
+export WORKON_HOME=$HOME/.pyenvs
+if [ $(pip3 freeze | grep virtualenvwrapper) ]; then
+  export VIRTUALENVWRAPPER_PYTHON=$(which python3)
+elif [ $(pip2 freeze | grep virtualenvwrapper) ]; then
+  export VIRTUALENVWRAPPER_PYTHON=$(which python2)
+elif [ $(pip freeze | grep virtualenvwrapper) ]; then
+  export VIRTUALENVWRAPPER_PYTHON=$(which python)
+fi
+
+if [ ! -z $VIRTUALENVWRAPPER_PYTHON ]; then
+  if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+      source /usr/local/bin/virtualenvwrapper.sh
+  elif [ -f $HOME/.local/bin/virtualenvwrapper.sh ]; then
+      source $HOME/.local/bin/virtualenvwrapper.sh
+  fi
 fi
 
 # Make sure "user" installed binaries are on the path
@@ -102,3 +114,9 @@ alias ipy="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance
 
 # Start vim with spell checking
 alias vims="vim -c 'set spell spelllang=en'"
+
+if [ "$OSTYPE" == "linux"* ]; then
+
+    alias open='xdg-open'
+
+fi
