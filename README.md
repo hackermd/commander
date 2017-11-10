@@ -4,6 +4,21 @@ Clone the repository:
 
     $ git clone https://github.com/hackermd/commander ~/commander
 
+## Requirements
+
+### General
+
+* tmux
+* vim
+
+### MacOSX
+
+* reattach-to-user-namespace
+
+### Linux
+
+* xclip
+
 ## Configuration
 
 ### MacOSX
@@ -31,6 +46,16 @@ Remap option key to behave as in Linux terminal:
 
     Preferences > Profiles > Keys > Left option key acts as
     `+Esc`
+
+### Linux Ubuntu
+
+#### Terminal Settings
+
+Use a different background color to match the background of Vim windows configured via [hackermd/vimanizer](https://github.com/hackermd/vimanizer):
+
+    Edit > Profile Preferences > Colors > Text and Background Color > Built-in schemes: Custom
+
+Set *background color* to `242424` RGB Hex and *text color* to `ffffff`.
 
 ### General
 
