@@ -36,12 +36,13 @@ brew install binutils \
              parallel \
              perl \
              python \
+             reattach-to-user-namespace \
              rename \
              rsync \
              the_silver_searcher \
              tmux \
              unzip \
-             vim --override-system-vi --with-client-server \
+             vim --with-override-system-vi \
              watch \
              wdiff --with-gettext \
              wget
