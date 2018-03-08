@@ -65,6 +65,13 @@ Create a softlink for the `tmux` configuration file:
 
     $ ln -s ~/commander/tmux.conf ~/.tmux.conf
     $ ln -s ~/commander/tmux-darwin.conf ~/.tmux-darwin.conf
+    
+Install tmux *tpm* plugin manager:
+
+    $ mkdir -p ~/.tmux/plugins
+    $ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    
+Start `tmux` and install plugins via shortcut `prefix + I`.
 
 #### Dir colors
 
