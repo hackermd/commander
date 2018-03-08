@@ -6,8 +6,6 @@ fi
 brew cask install xquartz
 brew cask install java
 
-brew tab homebrew/science
-
 brew install binutils \
              cmake \
              coreutils \
@@ -43,7 +41,7 @@ brew install binutils \
              the_silver_searcher \
              tmux \
              unzip \
-             vim --override-system-vi \
+             vim --override-system-vi --with-client-server \
              watch \
              wdiff --with-gettext \
              wget
