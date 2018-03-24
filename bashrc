@@ -16,10 +16,6 @@ export VISUAL='vim'
 set -o vi
 set show-mode-in-prompt on
 
-###########
-# Mac OSX #
-###########
-
 if [ "$OSTYPE" == "darwin"* ]; then
 
     # Stuff installed via homebrew
@@ -31,9 +27,6 @@ if [ "$OSTYPE" == "darwin"* ]; then
 
         # Prefer GNU command line tools over defaults
         export PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:$PATH"
-
-        export CC=gcc-7
-        export CXX=g++-7
     fi
 
 fi
@@ -43,24 +36,36 @@ fi
 ##########
 
 # Virtualenvwrapper
-export WORKON_HOME=$HOME/.pyenvs
-if [ $(pip3 freeze | grep virtualenvwrapper) ]; then
-  export VIRTUALENVWRAPPER_PYTHON=$(which python3)
-elif [ $(pip2 freeze | grep virtualenvwrapper) ]; then
-  export VIRTUALENVWRAPPER_PYTHON=$(which python2)
-elif [ $(pip freeze | grep virtualenvwrapper) ]; then
-  export VIRTUALENVWRAPPER_PYTHON=$(which python)
+if [ $(command -v pip) ]; then
+
+    export WORKON_HOME=$HOME/.pyenvs
+    if [ $(command -v pip3) ]; then
+        if [ $(pip3 freeze | grep virtualenvwrapper) ]; then
+          export VIRTUALENVWRAPPER_PYTHON=$(which python3)
+        fi
+    elif [ $(command -v pip2) ]; then
+        if [ $(pip2 freeze | grep virtualenvwrapper) ]; then
+          export VIRTUALENVWRAPPER_PYTHON=$(which python2)
+        fi
+    else
+        if [ $(pip freeze | grep virtualenvwrapper) ]; then
+          export VIRTUALENVWRAPPER_PYTHON=$(which python)
+        fi
+    fi
+
+    if [ ! -z $VIRTUALENVWRAPPER_PYTHON ]; then
+      if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+          source /usr/local/bin/virtualenvwrapper.sh
+      elif [ -f /usr/bin/virtualenvwrapper.sh ]; then
+          source /usr/bin/virtualenvwrapper.sh
+      elif [ -f $HOME/.local/bin/virtualenvwrapper.sh ]; then
+          source $HOME/.local/bin/virtualenvwrapper.sh
+      fi
+    fi
+
 fi
 
-if [ ! -z $VIRTUALENVWRAPPER_PYTHON ]; then
-  if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
-      source /usr/local/bin/virtualenvwrapper.sh
-  elif [ -f $HOME/.local/bin/virtualenvwrapper.sh ]; then
-      source $HOME/.local/bin/virtualenvwrapper.sh
-  fi
-fi
-
-# Make sure "user" installed binaries are on the path
+# Make sure user installed binaries are on the path
 export PATH=$HOME/.local/bin:$PATH
 
 ########
@@ -76,11 +81,6 @@ fi
 # Aliases #
 ###########
 
-# Start mutt in Downloads folder to facilitate saving attachments
-if [ -d $HOME/Downloads ]; then
-    alias mutt="cd $HOME/Downloads && mutt"
-fi
-
 # Change directories
 alias ,='cd ..'
 alias ,,='cd ../..'
@@ -88,10 +88,6 @@ alias ,,,='cd ../../..'
 alias ,,,,='cd ../../../..'
 
 # Listing directory contents
-if [ $(which dircolors) ]; then
-    test -r $HOME/.dir_colors && eval "$(dircolors -b $HOME/.dir_colors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=tty'
-fi
 alias lsa='ls -lah'
 alias lla='ls -la'
 alias ll='ls -l'
@@ -112,8 +108,8 @@ alias grl='git reflog'
 # Ensure that ipython stays within virtual environmentes
 alias ipy="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance()'"
 
-# Start vim with spell checking
-alias vims="vim -c 'set spell spelllang=en'"
+# Vim with spelling checks
+alias svim="vim -c 'setlocal spell spelllang=en_us'"
 
 if [ "$OSTYPE" == "linux"* ]; then
 
