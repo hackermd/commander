@@ -31,10 +31,6 @@ if [ "$OSTYPE" == "darwin"* ]; then
         export PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:$PATH"
         
     fi
-    
-elif [ "$OSTYPE" == "linux"* ]; then
-
-    alias open='xdg-open'
 
 fi
 
@@ -93,12 +89,17 @@ alias ,='cd ..'
 alias ,,='cd ../..'
 alias ,,,='cd ../../..'
 alias ,,,,='cd ../../../..'
+alias ,,,,,='cd ../../../../..'
 
 # Listing directory contents
-alias lsa='ls -lah'
-alias lla='ls -la'
-alias ll='ls -l'
-alias la='ls -a'
+alias ls='ls -p'
+alias lsa='ls -A'
+alias lst='ls -t'
+alias lss='ls -S'
+alias lsh='ls -lh'
+alias lsf='ls -F'
+alias lsn='ls -n'
+alias lsr='ls -R'
 
 # Regularily used git commands
 alias gs='git status'
@@ -112,9 +113,14 @@ alias gd='git diff'
 alias gl='git log'
 alias grl='git reflog'
 
-# Ensure that ipython stays within virtual environmentes
+# Ensure that ipython stays within virtual environments
 alias ipy="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance()'"
 
 # Vim with spelling checks
 alias svim="vim -c 'setlocal spell spelllang=en_us'"
 
+if [ "$OSTYPE" == "linux"* ]; then
+
+    alias open='xdg-open'
+    
+fi
