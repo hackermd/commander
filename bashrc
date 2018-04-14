@@ -15,6 +15,9 @@ export VISUAL='vim'
 # Use vi mode instead of emacs
 set -o vi
 
+# Prompt [user@host:cwd]$
+export PS1='[\u@\h:\w]\\$ '
+
 if [ "$OSTYPE" == "darwin"* ]; then
 
     # Stuff installed via homebrew
