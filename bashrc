@@ -14,12 +14,11 @@ export VISUAL='vim'
 
 # Use vi mode instead of emacs
 set -o vi
-set show-mode-in-prompt on
 
 if [ "$OSTYPE" == "darwin"* ]; then
 
     # Stuff installed via homebrew
-    if [ $(which brew) ]; then
+    if [ $(command -v brew) ]; then
 
         # Enable GNU command line tools and corresponding man pages
         export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
@@ -27,7 +26,12 @@ if [ "$OSTYPE" == "darwin"* ]; then
 
         # Prefer GNU command line tools over defaults
         export PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:$PATH"
+        
     fi
+    
+elif [ "$OSTYPE" == "linux"* ]; then
+
+    alias open='xdg-open'
 
 fi
 
@@ -40,15 +44,15 @@ if [ $(command -v pip) ]; then
 
     export WORKON_HOME=$HOME/.pyenvs
     if [ $(command -v pip3) ]; then
-        if [ $(pip3 freeze | grep virtualenvwrapper) ]; then
+        if [ $(pip3 --disable-pip-version-check freeze | grep virtualenvwrapper) ]; then
           export VIRTUALENVWRAPPER_PYTHON=$(which python3)
         fi
     elif [ $(command -v pip2) ]; then
-        if [ $(pip2 freeze | grep virtualenvwrapper) ]; then
+        if [ $(pip2 --disable-pip-version-check freeze | grep virtualenvwrapper) ]; then
           export VIRTUALENVWRAPPER_PYTHON=$(which python2)
         fi
     else
-        if [ $(pip freeze | grep virtualenvwrapper) ]; then
+        if [ $(pip --disable-pip-version-check freeze | grep virtualenvwrapper) ]; then
           export VIRTUALENVWRAPPER_PYTHON=$(which python)
         fi
     fi
@@ -111,8 +115,3 @@ alias ipy="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance
 # Vim with spelling checks
 alias svim="vim -c 'setlocal spell spelllang=en_us'"
 
-if [ "$OSTYPE" == "linux"* ]; then
-
-    alias open='xdg-open'
-
-fi
