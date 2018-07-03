@@ -41,28 +41,34 @@ fi
 # Virtualenvwrapper
 if [ $(command -v pip) ]; then
 
+    if [ $(command -v 'pip --disable-pip-version-check freeze') ]; then
+        PIP_CMD=$(pip --disable-pip-version-check freeze)
+    else
+        PIP_CMD=$(pip freeze)
+    fi
+
     export WORKON_HOME=$HOME/.pyenvs
     if [ $(command -v pip3) ]; then
-        if [ $(pip3 --disable-pip-version-check freeze | grep virtualenvwrapper) ]; then
-          export VIRTUALENVWRAPPER_PYTHON=$(which python3)
+        if [ $($PIP_CMD | grep virtualenvwrapper) ]; then
+            export VIRTUALENVWRAPPER_PYTHON=$(which python3)
         fi
     elif [ $(command -v pip2) ]; then
-        if [ $(pip2 --disable-pip-version-check freeze | grep virtualenvwrapper) ]; then
-          export VIRTUALENVWRAPPER_PYTHON=$(which python2)
+        if [ $($PIP_CMD | grep virtualenvwrapper) ]; then
+            export VIRTUALENVWRAPPER_PYTHON=$(which python2)
         fi
     else
-        if [ $(pip --disable-pip-version-check freeze | grep virtualenvwrapper) ]; then
-          export VIRTUALENVWRAPPER_PYTHON=$(which python)
+        if [ $($PIP_CMD | grep virtualenvwrapper) ]; then
+            export VIRTUALENVWRAPPER_PYTHON=$(which python)
         fi
     fi
 
     if [ ! -z $VIRTUALENVWRAPPER_PYTHON ]; then
-      if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+      if [ -f $HOME/.local/bin/virtualenvwrapper.sh ]; then
+          source $HOME/.local/bin/virtualenvwrapper.sh
+      elif [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
           source /usr/local/bin/virtualenvwrapper.sh
       elif [ -f /usr/bin/virtualenvwrapper.sh ]; then
           source /usr/bin/virtualenvwrapper.sh
-      elif [ -f $HOME/.local/bin/virtualenvwrapper.sh ]; then
-          source $HOME/.local/bin/virtualenvwrapper.sh
       fi
     fi
 
