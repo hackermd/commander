@@ -29,7 +29,7 @@ if [ "$OSTYPE" == "darwin"* ]; then
 
         # Prefer GNU command line tools over defaults
         export PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:$PATH"
-        
+
     fi
 
 fi
@@ -85,6 +85,16 @@ export PATH=$HOME/.local/bin:$PATH
 if [ -f /usr/lib/jvm/java-1.8-openjdk ]; then
     export JAVA_HOME=/usr/lib/jvm/java-1.8-openjdk
 fi
+
+#########
+# C/C++ #
+#########
+
+# Install libraries with the "$HOME/.local" prefix
+# - ./configure --prefix=$HOME/.local
+# - cmake -DCMAKE_INSTALL_PREFIX=$HOME/.local
+export LD_LIBRARY_PATH=$HOME/.local/lib:$LD_LIBRARY_PATH
+export PKG_CONFIG_PATH=$HOME/.local/lib/pkgconfig:$PKG_CONFIG_PATH
 
 ###########
 # Aliases #
