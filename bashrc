@@ -30,6 +30,9 @@ if [ "$OSTYPE" == "darwin"* ]; then
         # Prefer GNU command line tools over defaults
         export PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:$PATH"
 
+        # Do not send analytics
+        export HOMEBREW_NO_ANALYTICS=1
+
     fi
 
 fi
@@ -41,23 +44,36 @@ fi
 # Virtualenvwrapper
 if [ $(command -v pip) ]; then
 
-    if [ $(command -v 'pip --disable-pip-version-check freeze') ]; then
-        PIP_CMD=$(pip --disable-pip-version-check freeze)
+    if [ $(command -v pip3) ]; then
+        PIP_EXECUTABLE=pip3
+    elif [ $(command -v pip2) ]; then
+        PIP_EXECUTABLE=pip2
     else
-        PIP_CMD=$(pip freeze)
+        PIP_EXECUTABLE=pip
     fi
 
+    if $(command -v "$PIP_EXECUTABLE --disable-pip-version-check freeze"); then
+        PIP_CMD (){
+            $PIP_EXECUTABLE --disable-pip-version-check freeze | grep -q 'virtualenvwrapper'
+        }
+    else
+        PIP_CMD (){
+            $PIP_EXECUTABLE freeze | grep -q 'virtualenvwrapper'
+        }
+    fi
+
+    # NOTE: `which` is problematic (aliases, etc.) 
     export WORKON_HOME=$HOME/.pyenvs
     if [ $(command -v pip3) ]; then
-        if [ $($PIP_CMD | grep virtualenvwrapper) ]; then
+        if PIP_CMD; then
             export VIRTUALENVWRAPPER_PYTHON=$(which python3)
         fi
     elif [ $(command -v pip2) ]; then
-        if [ $($PIP_CMD | grep virtualenvwrapper) ]; then
+        if PIP_CMD; then
             export VIRTUALENVWRAPPER_PYTHON=$(which python2)
         fi
     else
-        if [ $($PIP_CMD | grep virtualenvwrapper) ]; then
+        if PIP_CMD; then
             export VIRTUALENVWRAPPER_PYTHON=$(which python)
         fi
     fi
