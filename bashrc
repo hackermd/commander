@@ -91,7 +91,7 @@ if [ $(command -v pip) ]; then
 fi
 
 # Make sure user installed binaries are on the path
-export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.local/bin:/usr/local/bin$PATH
 
 ########
 # Java #
