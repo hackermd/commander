@@ -25,7 +25,7 @@ Clone the repository:
 
 ```None
 mkdir -p ~/.ipython/profile_default
-curl https://raw.githubusercontent.com/hackermd/commander/master/ipython_config.py > ~/.ipython/profile_default/ipython_config.py
+curl -s https://raw.githubusercontent.com/hackermd/commander/master/ipython_config.py > ~/.ipython/profile_default/ipython_config.py
 ```
 
 ### Tmux:
@@ -33,7 +33,7 @@ curl https://raw.githubusercontent.com/hackermd/commander/master/ipython_config.
 ```None
 mkdir -p ~/.tmux/plugins
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-curl https://raw.githubusercontent.com/hackermd/commander/master/tmux.conf > ~/.tmux
+curl -s https://raw.githubusercontent.com/hackermd/commander/master/tmux.conf > ~/.tmux
 ```
 
 Start `tmux` and install plugins via shortcut `prefix + I`.
@@ -41,10 +41,10 @@ Start `tmux` and install plugins via shortcut `prefix + I`.
 ### Bash:
 
 ```None
-curl https://raw.githubusercontent.com/hackermd/commander/master/bashrc > ~/.bashrc
-curl https://raw.githubusercontent.com/hackermd/commander/master/bash_profile > ~/.bashrc_profile
-curl https://raw.githubusercontent.com/hackermd/commander/master/inputrc > ~/.inputrc
-curl https://raw.githubusercontent.com/hackermd/commander/master/dir_colors > ~/.dir_colors
+curl -s https://raw.githubusercontent.com/hackermd/commander/master/bashrc > ~/.bashrc
+curl -s https://raw.githubusercontent.com/hackermd/commander/master/bash_profile > ~/.bashrc_profile
+curl -s https://raw.githubusercontent.com/hackermd/commander/master/inputrc > ~/.inputrc
+curl -s https://raw.githubusercontent.com/hackermd/commander/master/dir_colors > ~/.dir_colors
 ```
 
 ## OS-specific configurations
