@@ -64,19 +64,23 @@ if [ $(command -v pip) ]; then
         }
     fi
 
-    # NOTE: `which` is problematic (aliases, etc.) 
+    PYTHON_EXECUTABLE (){
+        type -a $1 | head -n 1 | grep -e '/.*' -o
+    }
+
+    # NOTE: `which` is problematic (aliases, etc.)
     export WORKON_HOME=$HOME/.pyenvs
     if [ $(command -v pip3) ]; then
         if PIP_CMD; then
-            export VIRTUALENVWRAPPER_PYTHON=$(which python3)
+            export VIRTUALENVWRAPPER_PYTHON=$(PYTHON_EXECUTABLE python3)
         fi
     elif [ $(command -v pip2) ]; then
         if PIP_CMD; then
-            export VIRTUALENVWRAPPER_PYTHON=$(which python2)
+            export VIRTUALENVWRAPPER_PYTHON=$(PYTHON_EXECUTABLE python2)
         fi
     else
         if PIP_CMD; then
-            export VIRTUALENVWRAPPER_PYTHON=$(which python)
+            export VIRTUALENVWRAPPER_PYTHON=$(PYTHON_EXECUTABLE python)
         fi
     fi
 
