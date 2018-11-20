@@ -18,7 +18,9 @@ set -o vi
 # Prompt [user@host:cwd]$
 export PS1='[\u@\h:\w]\\$ '
 
-if [ "$OSTYPE" == "darwin"* ]; then
+SYS_INFO="$(uname -a)"
+if [[ "${SYS_INFO}" = "Darwin"* ]]; then
+    echo "DARWIN"
 
     # Stuff installed via homebrew
     if [ $(command -v brew) ]; then
@@ -151,7 +153,7 @@ alias ipy="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance
 # Vim with spelling checks
 alias svim="vim -c 'setlocal spell spelllang=en_us'"
 
-if [ "$OSTYPE" == "linux"* ]; then
+if [[ "${SYS_INFO}" = "Linux"* ]]; then
 
     alias open='xdg-open'
     
