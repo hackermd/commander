@@ -21,6 +21,34 @@ Clone the repository:
 
 ## Configuration
 
+### IPython:
+
+```None
+mkdir -p ~/.ipython/profile_default
+curl https://raw.githubusercontent.com/hackermd/commander/master/ipython_config.py > ~/.ipython/profile_default/ipython_config.py
+```
+
+### Tmux:
+
+```None
+mkdir -p ~/.tmux/plugins
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+curl https://raw.githubusercontent.com/hackermd/commander/master/tmux.conf > ~/.tmux
+```
+
+Start `tmux` and install plugins via shortcut `prefix + I`.
+
+### Bash:
+
+```None
+curl https://raw.githubusercontent.com/hackermd/commander/master/bashrc > ~/.bashrc
+curl https://raw.githubusercontent.com/hackermd/commander/master/bash_profile > ~/.bashrc_profile
+curl https://raw.githubusercontent.com/hackermd/commander/master/inputrc > ~/.inputrc
+curl https://raw.githubusercontent.com/hackermd/commander/master/dir_colors > ~/.dir_colors
+```
+
+## OS-specific configurations
+
 ### MacOSX
 
 #### Command line tools
@@ -56,27 +84,5 @@ Use a different background color to match the background of Vim windows configur
     Edit > Profile Preferences > Colors > Text and Background Color > Built-in schemes: Custom
 
 Set *background color* to `242424` RGB Hex and *text color* to `ffffff`.
-
-### General
-
-#### Tmux
-
-Create a softlink for the `tmux` configuration file:
-
-    $ ln -s ~/commander/tmux.conf ~/.tmux.conf
-    $ ln -s ~/commander/tmux-darwin.conf ~/.tmux-darwin.conf
-    
-Install tmux *tpm* plugin manager:
-
-    $ mkdir -p ~/.tmux/plugins
-    $ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-    
-Start `tmux` and install plugins via shortcut `prefix + I`.
-
-#### Dir colors
-
-Create a softlink for the custom color configuration file:
-
-    $ ln -s ~/commander/dir_colors ~/.dir_colors
 
 
