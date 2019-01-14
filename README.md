@@ -33,7 +33,7 @@ curl -s https://raw.githubusercontent.com/hackermd/commander/master/ipython_conf
 ```None
 mkdir -p ~/.tmux/plugins
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-curl -s https://raw.githubusercontent.com/hackermd/commander/master/tmux.conf > ~/.tmux
+curl -s https://raw.githubusercontent.com/hackermd/commander/master/tmux.conf > ~/.tmux.conf
 ```
 
 Start `tmux` and install plugins via shortcut `prefix + I`.
