@@ -11,20 +11,20 @@ brew install binutils \
              coreutils \
              curl \
              diffutils \
-             ed --with-default-names \
-             findutils --with-default-names \
+             ed \
+             findutils \
              gawk \
              gcc \
              gdb \
              git \
-             gnu-indent --with-default-names \
-             gnu-sed --with-default-names \
-             gnu-tar --with-default-names \
-             gnu-which --with-default-names \
-             gnu-time --with-default-names \
-             gnutls --with-default-names \
+             gnu-indent \
+             gnu-sed \
+             gnu-tar \
+             gnu-which \
+             gnu-time \
+             gnutls \
              gpatch \
-             grep --with-default-names \
+             grep \
              gzip \
              htop \
              less \
@@ -42,7 +42,7 @@ brew install binutils \
              the_silver_searcher \
              tmux \
              unzip \
-             vim --with-override-system-vi \
+             vim \
              watch \
-             wdiff --with-gettext \
+             wdiff \
              wget
