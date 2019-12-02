@@ -42,7 +42,7 @@ Start `tmux` and install plugins via shortcut `prefix + I`.
 
 ```None
 curl -s https://raw.githubusercontent.com/hackermd/commander/master/bashrc > ~/.bashrc
-curl -s https://raw.githubusercontent.com/hackermd/commander/master/bash_profile > ~/.bashrc_profile
+curl -s https://raw.githubusercontent.com/hackermd/commander/master/bash_profile > ~/.bash_profile
 curl -s https://raw.githubusercontent.com/hackermd/commander/master/inputrc > ~/.inputrc
 curl -s https://raw.githubusercontent.com/hackermd/commander/master/dir_colors > ~/.dir_colors
 ```
