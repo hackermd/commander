@@ -3,6 +3,11 @@ if [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
 
+# Source alias definitions
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
 # Language settings
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -20,7 +25,6 @@ export PS1='[\u@\h:\w]\\$ '
 
 SYS_INFO="$(uname -a)"
 if [[ "${SYS_INFO}" = "Darwin"* ]]; then
-    echo "DARWIN"
 
     # Stuff installed via homebrew
     if [ $(command -v brew) ]; then
@@ -37,6 +41,8 @@ if [[ "${SYS_INFO}" = "Darwin"* ]]; then
 
     fi
 
+    # export PATH="$PATH:/usr/local/texlive/2019/bin/x86_64-darwin"
+
 fi
 
 ##########
@@ -44,15 +50,23 @@ fi
 ##########
 
 # Virtualenvwrapper
-if [ $(command -v pip) ]; then
+if [ $(command -v python3) ]; then
+    PYTHON_VERSION=$(python3 --version | grep -o -e '3.[0-9]')
+elif [ $(command -v python2) ]; then
+    PYTHON_VERSION=$(python2 --version | grep -o -e '2.[0-9]')
+elif [ $(command -v python) ]; then
+    PYTHON_VERSION=$(python --version | grep -o -e '[0-9].[0-9]')
+fi
 
-    if [ $(command -v pip3) ]; then
-        PIP_EXECUTABLE=pip3
-    elif [ $(command -v pip2) ]; then
-        PIP_EXECUTABLE=pip2
-    else
-        PIP_EXECUTABLE=pip
-    fi
+if [ $(command -v pip3) ]; then
+    PIP_EXECUTABLE=pip3
+elif [ $(command -v pip2) ]; then
+    PIP_EXECUTABLE=pip2
+elif [ $(command -v pip) ]; then
+    PIP_EXECUTABLE=pip
+fi
+
+if [ $(command -v ${PIP_EXECUTABLE}) ]; then
 
     if $(command -v "$PIP_EXECUTABLE --disable-pip-version-check freeze"); then
         PIP_CMD (){
@@ -91,13 +105,15 @@ if [ $(command -v pip) ]; then
           source /usr/local/bin/virtualenvwrapper.sh
       elif [ -f /usr/bin/virtualenvwrapper.sh ]; then
           source /usr/bin/virtualenvwrapper.sh
+      elif [ -f $HOME/Library/Python/${PYTHON_VERSION}/bin/virtualenvwrapper.sh ]; then
+          source $HOME/Library/Python/${PYTHON_VERSION}/bin/virtualenvwrapper.sh
       fi
     fi
 
 fi
 
 # Make sure user installed binaries are on the path
-export PATH=$HOME/.local/bin:/usr/local/bin$PATH
+export PATH=$HOME/.local/bin:/usr/local/bin:$HOME/Library/Python/${PYTHON_VERSION}/bin:$PATH
 
 ########
 # Java #
@@ -160,5 +176,5 @@ alias svim="vim -c 'setlocal spell spelllang=en_us'"
 if [[ "${SYS_INFO}" = "Linux"* ]]; then
 
     alias open='xdg-open'
-    
+
 fi
